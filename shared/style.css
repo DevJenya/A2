@@ -1,0 +1,108 @@
+body{
+    background: rgb(255, 145, 106);
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+
+#try{
+    background: crimson;
+    width: 100px;
+    height: 100px;
+}
+
+#main {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#login_window{
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin:30px;
+}
+
+.auth_window {
+    flex-direction: column;
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.527);
+}
+
+.auth_window input{
+    margin: 5px;
+}
+
+.btn_submit{
+    width: 100px;
+    margin: 5px;
+}
+
+.auth_window form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#table, th, td{
+    border: 2px solid rgb(8, 8, 8);
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.52);
+}
+
+th, td{
+    padding: 5px 15px;
+    font-size: 1.2em;
+}
+
+#btn_close{
+    float: right;
+    width: 25px;
+    height: 25px;
+    font-weight: bold;
+    padding: 2px;
+    color: red;
+    border: none;
+}
+
+#box_label{
+    padding-top: 5px;
+    color: black;
+    display: inline-block;
+}
+
+.auth_window_header{
+    display: inline-block;
+    text-align: center;
+}
+
+#btn_login{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin:30px;
+    padding: 15px 20px;
+    border: none;
+}
+
+#signout{
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin:30px;
+}
+
+#signout input{
+    padding: 15px 20px;
+    border: none;
+}
