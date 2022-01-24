@@ -31,12 +31,6 @@
             unset($_POST['bookmark_add']);
         }
     } 
-
-    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["bookmark_remove"])){
-        $query = mysqli_query($connection,"delete from bookmarks where bookmark_id = '$id'");
-    }
-
-
   
     $query_user_links = "select bookmark_id, bookmark_name,bookmark_link 
         from bookmarks where user_id = '$id'";
@@ -81,9 +75,10 @@
             echo "<td>$row[bookmark_name]</td>";
             echo "<td><a href='http://$row[bookmark_link]'>
             $row[bookmark_link]</a></td>";
-            echo '<form method="post">';
-            echo "<td><input type='submit' name='bookmark_remove' value = 'remove'></input></td></tr>";
+            echo '<form method="post" action="delete.php">';
+            echo "<td><input type='submit' name='bookmark_add'>remove</input></td>";
             echo '</form>';
+            echo "<td><a href=\"delete.php?id=".$row['bookmark_id']."\">Delete</a></td></tr>";
         }
         ?>
     </table>
