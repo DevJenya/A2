@@ -34,10 +34,13 @@ body{
 }
 
 .auth_window {
+    display: flex;
     flex-direction: column;
     padding: 10px 15px;
     background-color: rgba(255, 255, 255, 0.527);
     box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    align-items: center;
+    justify-content: center;
 }
 
 .auth_window input{
@@ -75,6 +78,7 @@ th, td{
 }
 
 #btn_close{
+    position: relative;
     float: right;
     width: 25px;
     height: 25px;
@@ -92,9 +96,10 @@ th, td{
 }
 
 .auth_window_header{
-    display: inline-block;
+    display: block;
     text-align: center;
-    
+
+    width: 100%;
 }
 
 #btn_login{
