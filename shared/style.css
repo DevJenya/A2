@@ -1,17 +1,19 @@
 body{
-    background: rgb(255, 145, 106);
+    background: linear-gradient(rgb(255, 145, 106), rgba(255, 146, 106, 0.555));
 }
 
 body{
     height: 100vh;
     width: 100vw;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-#try{
-    background: crimson;
-    width: 100px;
-    height: 100px;
+#welcome_msg,h2{
+    text-align: center;
+    font-size: 500%;
+    margin-top: 150px;
 }
 
 #main {
@@ -35,6 +37,7 @@ body{
     flex-direction: column;
     padding: 10px 15px;
     background-color: rgba(255, 255, 255, 0.527);
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
 }
 
 .auth_window input{
@@ -60,9 +63,15 @@ body{
     background: rgba(255, 255, 255, 0.52);
 }
 
+.direction_link{
+  
+    color: #000;
+}
+
 th, td{
     padding: 5px 15px;
     font-size: 1.2em;
+    text-align: center;
 }
 
 #btn_close{
@@ -73,6 +82,7 @@ th, td{
     padding: 2px;
     color: red;
     border: none;
+    background: transparent;
 }
 
 #box_label{
@@ -84,6 +94,7 @@ th, td{
 .auth_window_header{
     display: inline-block;
     text-align: center;
+    
 }
 
 #btn_login{
@@ -105,4 +116,61 @@ th, td{
 #signout input{
     padding: 15px 20px;
     border: none;
+}
+
+#container{
+    background: whitesmoke;
+    margin: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.2em;
+    border: 2px solid white;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.397);
+    min-width: 500px;
+    max-width: 1200px;
+}
+
+#table{
+    background: chartreuse;
+    margin: 10px;
+    width: 90%;
+}
+
+a{
+    text-decoration: none;
+}
+
+#btn_edit_cancel{
+    width: 100%;
+    margin:20px;
+}
+
+#btn_edit_save{
+    width: 100px;
+    border: 2px solid rgba(6, 180, 17, 0.753);;
+    margin: 10px;
+    font-size: 1.2em;
+    color: rgba(6, 180, 17, 0.753);
+    border-radius: 5px;
+}
+#form_edit{
+    display: flex;
+    flex-direction:  column;
+    align-items: center;
+}
+
+#box_label input{
+    text-align: center;
+}
+
+#logo{
+    position: absolute;
+    padding: 15px;
+    margin: 20px;
+    border: 5px solid black;
+    display: inline-block;
+    border-radius: 50px;
 }

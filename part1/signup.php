@@ -35,16 +35,18 @@
     <title>Assignment 2 part 1</title>
 </head>
 <body>
+<h1 id="logo">Bmarker</h1>
     <div id="main">
     <div class='auth_window'>
         <form method="post">
             <span id="box_label">Create Account</span>
 
-            <input type="text" name="user_name">
-            <input type="password" name="password">
+            <input type="text" name="user_name" placeholder="username">
+            <input type="password" name="password" placeholder="password">
+            <br>
             <button type="submit" >Sign up</button>
-
-            <a href="signup.php">Login up here</a>
+            <br>
+            <a href="index.php">Login here</a>
         </form>
     </div>
     </div>

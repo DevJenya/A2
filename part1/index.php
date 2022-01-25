@@ -19,7 +19,7 @@
             $result = mysqli_query($connection, $query);
 
             if($result && mysqli_num_rows($result)){
-                
+            
                 $user_data = mysqli_fetch_assoc($result);
 
                 if($user_data['password'] === $password){
@@ -34,6 +34,8 @@
     $query = "select bookmark_name, bookmark_link from bookmarks group by bookmark_link order by count(bookmark_link) desc LIMIT 10;";
 
 		$result = mysqli_query($connection, $query);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -46,10 +48,12 @@
     <title>Assignment 2 part 1</title>
 </head>
 <body>
+<h1 id="logo">Bmarker</h1>
     <div id="main">
 
+    
     <button id="btn_login">Login</button>
-
+    <div id="container"> 
     <h3>TOP 10 bookmarked links:</h3>
 
     <table id="table">
@@ -65,7 +69,7 @@
             }
         ?>
     </table>
-
+    </div>
     <div class='auth_window' id="login_window">
         <div class="auth_window_header">
             <span id="box_label">Login</span>

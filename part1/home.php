@@ -49,40 +49,43 @@
     </head>
     <body>
 
+<h1 id="logo">Bmarker</h1>
+
 <form id="signout" action="logout.php" method="get">
     <input type="submit" value="Signout">
 </form>
-
+    <h2 id="welcome_msg">Welcome, <?php echo $user_data['user_name']?></h2>
+    <div id="container">
     <div id='bookmark_add'>
         <form method="post">
             <span id="box_label">Create Bookmark</span>
-
-            <input type="text" name="bookmark_name">
-            <input type="text" name="bookmark_address">
+            <input type="text" name="bookmark_name" placeholder="Bookmark Name">
+            <input type="text" name="bookmark_address" placeholder="Link">
 
             <button type="submit" name="bookmark_add">Add</button>
         </form>
     </div>
 
+    <h3>Your current bookmarks:</h3>
     <table id="table">
     <tr>
     <th>Name</th>
     <th>Link</th>
+    <th></th>
+    <th></th>
   </tr>
     <?php 
         while($row = mysqli_fetch_assoc($result)){
             
             echo "<td>$row[bookmark_name]</td>";
-            echo "<td><a href='http://$row[bookmark_link]'>
+            echo "<td><a href='http://$row[bookmark_link]' target='_blank'>
             $row[bookmark_link]</a></td>";
-            echo '<form method="post" action="delete.php">';
-            echo "<td><input type='submit' name='bookmark_add'>remove</input></td>";
-            echo '</form>';
-            echo "<td><a href=\"delete.php?id=".$row['bookmark_id']."\">Delete</a></td></tr>";
+            echo "<td><a class='direction_link' href=\"delete.php?id=".$row['bookmark_id']."\">Delete</a></td>";
+            echo "<td><a class='direction_link' href=\"edit.php?id=".$row['bookmark_id']."\">Edit</a></td></tr>";
         }
         ?>
     </table>
-    
+    </div>
 
    
 
