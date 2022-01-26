@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../shared/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -14,13 +15,13 @@
             <span id="box_label">Login</span>
             <button id="btn_close">&#10006</button>
         </div>
-        
-            <input type="text" name="user_name" id="login_user_name">
-            <input type="password" name="password" id="login_pass">
+        <form action="scripts/login.php" method="get" id="form_login">
+            <input type="text" name="user_name" id="login_user_name" placeholder="username">
+            <input type="password" name="password" id="login_pass" placeholder="password">
             <button class="btn_submit" id="btn_login_submit" type="submit" name="form1">Login</button>
 
-            <a href="signup.php">Sign up here</a>
-        
+            <a href="scripts/signup.php">Sign up here</a>
+        </form>
     </div>
 
 

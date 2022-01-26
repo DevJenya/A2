@@ -5,11 +5,11 @@
     include("connection.php");
 
     //check if the form has been posted
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
+    if($_SERVER['REQUEST_METHOD'] == "GET"){
         
         //store posted information into variables 
-        $user_name = $_POST['user_name'];
-        $password = $_POST['password'];
+        $user_name = $_GET['user_name'];
+        $password = $_GET['password'];
 
         if(!empty($user_name) && !empty($password))
         {
@@ -24,8 +24,8 @@
 
                 if($user_data['password'] === $password){
                     $_SESSION['id'] = $user_data['id'];
-                    header("Location: home.php");
-                    die;
+
+                    echo "1";
                 } 
             }
         } 

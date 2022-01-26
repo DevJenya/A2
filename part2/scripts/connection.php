@@ -3,7 +3,7 @@
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$dbname = "tma2p1";
+$dbname = "tma2p2";
 
 
 

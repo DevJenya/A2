@@ -1,0 +1,17 @@
+<?xml version = "1.0"?>
+
+<learning_item>
+	<course_id>Course ID</course_id>
+	<unit_number>Unit number</unit_number>
+	<lesson_title>Lesson Title</lesson_title>
+	<lesson_content>
+		<content_entry>
+			<section_title>section_title</section_title>
+			<text>Floor Associate</text>
+		</content_entry>
+		<content_entry>
+			<section_title>section_title</section_title>
+			<text>Floor Associate</text>
+		</content_entry>
+	</lesson_content>
+</learning_item>

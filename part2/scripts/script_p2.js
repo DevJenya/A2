@@ -1,29 +1,38 @@
 
-const login_user_name = document.getElementById("login_user_name");
-const login_pass = document.getElementById("login_pass");
-const btn_login_submit = document.getElementById("btn_login_submit");
-const LOGIN_WINDOW = document.getElementById("login_window");
-const BTN_CLOSE = document.getElementById("btn_close");
-const BTN_LOGIN = document.getElementById("btn_login");
 
-btn_login_submit.addEventListener('click', print_stuff);
-if(BTN_LOGIN){BTN_LOGIN.addEventListener('click', showLogin);}
+//onclick handler for clicking login button
+$("#btn_login").click(function(){
+    $("#btn_login").hide();
+    $("#login_window").fadeIn(100).css('display', 'flex');
+});
 
-if(BTN_CLOSE){BTN_CLOSE.addEventListener('click', closeLogin);}
+//onclick handler for closing login window
+$("#btn_close").click(function(){
+    $("#btn_login").show();
+    $("#login_window").fadeOut(100);
+});
 
+//login AJAX call to login.php
+$("#form_login").submit(function(e){
+    e.preventDefault();
+    $.ajax({
+        url : $('#form_login').attr('action'),
+        data: {user_name: $("#login_user_name").val(),password: $("#login_pass").val()}
+    }).done(function(data) {
+        if(data == 1){
+            window.location.href="home.html";
+        }else{
+            alert("Please, enter correct login information");
+        }   
+    });
+});
 
-function print_stuff(){
-    LOGIN_WINDOW.style.display = "flex";
-    alert("HERE");
-    console.log(login_user_name.value);
-}
+$("#slide").click(function(){
+    $.ajax({
+        url : "scripts/parser.php",
+    }).done(function(data) {
+        console.log(JSON.parse(data));  
+        $("#main h1").html();
+    });
+});
 
-function showLogin(){
-    LOGIN_WINDOW.style.display = "flex";
-    BTN_LOGIN.style.display = "none";
-}
-
-function closeLogin(){
-    LOGIN_WINDOW.style.display = "none";
-    BTN_LOGIN.style.display = "flex";
-}
