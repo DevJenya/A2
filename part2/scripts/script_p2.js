@@ -31,8 +31,25 @@ $("#slide").click(function(){
     $.ajax({
         url : "scripts/parser.php",
     }).done(function(data) {
-        console.log(JSON.parse(data));  
-        $("#main h1").html();
+        let x = JSON.parse(data);
+        console.log(x);  
+        createGUI(x);
     });
 });
 
+function createGUI(data){
+
+    $("#content").append("<h3>Course id: " + data.course_id + "</h3>");
+    $("#content").append("<h3>Course id: " + data.unit_number + "</h3>");
+    $("#content").append("<h3>Lesson: " + data.lesson_title + "</h3>");
+
+   for(let i = 0; i < data.lesson_content.content_entry.length; i++){
+        $("#content").append("<p>Section title: " + data.lesson_content.content_entry[i].section_title + "</p>");
+
+        alert(data.lesson_content.content_entry[i].text.length);
+        for(let j = 0; j < data.lesson_content.content_entry[i].text.length; j++){
+            $("#content").append("<p>TEXT: " + data.lesson_content.content_entry[i].text[j] + "</p>");
+        };
+    
+    };
+}
