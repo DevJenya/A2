@@ -178,3 +178,14 @@ a{
     display: inline-block;
     border-radius: 50px;
 }
+
+#content{
+    width: 100px;
+    height: 100px;
+    background: aqua;
+    display: block;
+}
+
+button{
+    color: red;
+}

@@ -46,10 +46,24 @@ function createGUI(data){
    for(let i = 0; i < data.lesson_content.content_entry.length; i++){
         $("#content").append("<p>Section title: " + data.lesson_content.content_entry[i].section_title + "</p>");
 
-        alert(data.lesson_content.content_entry[i].text.length);
-        for(let j = 0; j < data.lesson_content.content_entry[i].text.length; j++){
-            $("#content").append("<p>TEXT: " + data.lesson_content.content_entry[i].text[j] + "</p>");
-        };
+        console.log(typeof data.lesson_content.content_entry[i].text.paragraph);
+        // for(let j = 0; j < data.lesson_content.content_entry[i].text.length; j++){
+        //     $("#content").append("<p>TEXT: " + data.lesson_content.content_entry[i].text[j] + "</p>");
+        // };
     
+
+        //check that there are more than one paragraph, itterate through each else print 1 paragraph
+        if(typeof data.lesson_content.content_entry[i].text.paragraph !== 'string'){
+            for(let k = 0; k < data.lesson_content.content_entry[i].text.paragraph.length; k++){
+                $("#content").append("<p>TEXT: " + data.lesson_content.content_entry[i].text.paragraph[k] + "</p>");
+            }
+        } else {
+            $("#content").append("<p>TEXT: " + data.lesson_content.content_entry[i].text.paragraph + "</p>");
+        }
+
+        // $.each(data.lesson_content.content_entry[i].text, function(i, val){
+        //     $("#content").append("<p>TEXT: " + val + "</p>");
+        // });
+
     };
 }
