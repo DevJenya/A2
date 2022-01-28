@@ -179,13 +179,17 @@ a{
     border-radius: 50px;
 }
 
-#content{
-    width: 100px;
-    height: 100px;
-    background: aqua;
-    display: block;
+.content{
+    background: white;
+    padding: 15px;
+    font-size: 1.2em;
+    width: 90%;
 }
 
 button{
     color: red;
+}
+#main{
+    position: relative;
+    float: left;
 }
