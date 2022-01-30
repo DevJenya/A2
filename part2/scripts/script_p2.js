@@ -1,5 +1,4 @@
 
-
 //onclick handler for clicking login button
 $("#btn_login").click(function(){
     $("#btn_login").hide();
@@ -12,6 +11,7 @@ $("#btn_close").click(function(){
     $("#login_window").fadeOut(100);
 });
 
+//used in index.html login
 //login AJAX call to login.php
 $("#form_login").submit(function(e){
     e.preventDefault();
@@ -27,47 +27,88 @@ $("#form_login").submit(function(e){
     });
 });
 
-$("#slide").click(function(){
-    $.ajax({
-        url : "scripts/parser.php",
-    }).done(function(data) {
-        let x = JSON.parse(data);
-        console.log(x);  
-        createGUI(x);
-    });
-});
 
 
-$("#btn_user_content").click(function(){
+
+function show_courses_available(){
+ 
+    //request of course list accessible to user
     $.ajax({
         url : "scripts/check_user_accessible_content.php",
     }).done(function(data) {
-        let x = JSON.parse(data);
-        console.log(x);  
+        let available_courses = JSON.parse(data);
+        console.log(available_courses);  
+        
+        //for each available course
+        for(let i = 0; i < available_courses.length; i++){
+            let course = available_courses[i].course_id;
+            let user_id = available_courses[i].user_id;
 
-        for(let i = 0; i < x.length; i++){
-            let course = x[i].course_id;
-            let user_id = x[i].user_id;
+            
+            show_quizes_available(course);
 
-            let button = document.createElement('input');
-            button.setAttribute('type', 'button');
-            button.value = (course + " user_id:" + user_id);
-            $("#user_content").append(button);
-            button.addEventListener('click', function(){
-                $.ajax({
-                    url : "scripts/parser.php",
-                    data: {course_id: course}
-                }).done(function(data) {
-                    console.log(data);
-                    let x = JSON.parse(data);
-                    console.log(x); 
-                    $("#content").html(""); 
-                    createGUI(x);
+            //create a div for each course
+            let div_course_data = document.createElement('div');
+            div_course_data.id = "div_course_" + course;
+            $(div_course_data).addClass("course_block_div_home_page");
+            $("#user_content").append(div_course_data);
+
+            //print course name on top of the div
+            div_course_data.innerHTML = ("<h3>" + course + "</h3>");
+
+            //request into course structure database to see what 
+            //components of the course exist and create link buttons to them
+            $.ajax({
+                url : "scripts/get_course_internals.php",
+                data: {course_id: course}
+            }).done(function(data) {
+                console.log(data);
+                let course_component = JSON.parse(data);
+                
+                let btn_array = [];
+
+                $.each(course_component, function(i,val){
+                    btn_array[i] = document.createElement('input');
+                    btn_array[i].setAttribute('type', 'submit');
+       
                 });
-            })
+
+                //for each course lesson display below 
+                $.each(course_component, function(i, val){
+                    btn_array[i].id = "form_btn_" + i;
+                    let form = document.createElement('form');
+             
+                    form.id = "form_course_" + course;
+                    form.action = "scripts/parser.php"
+                    form.method = "GET";
+                    btn_array[i].value = ("Unit: "
+                    + val.unit + " lesson: " + val.lesson);
+
+                    //add information hidden fields to form
+                    let c_id = document.createElement('input');
+                    c_id.value  = course;
+                    c_id.name  = "course_id";
+                    c_id.type = "hidden";
+                    $(form).append(c_id);
+                    let un = document.createElement('input');
+                    un.value = val.unit;
+                    un.name = "unit";
+                    un.type = "hidden";
+                    $(form).append(un);
+                    let les = document.createElement('input');
+                    les.name = "lesson_number";
+                    les.value = val.lesson;
+                    les.type = "hidden";
+                    $(form).append(les);
+
+                    $(form).append(btn_array[i]);
+                    $("#"+div_course_data.id).append(form);
+                    
+                });
+            });
         }
     });
-});
+}
 
 function createGUI(data){
 
@@ -90,8 +131,7 @@ function createGUI(data){
                 
                 //if this paragraph has a list,print the list, else print the para text
                 if(typeof data.lesson_content.content_entry[i].text.paragraph[k].list != 'undefined'){    
-                    $("#content")
-                        .append("<ul>");
+                    $("#content").append("<ul>");
                     for(let item in data.lesson_content.content_entry[i].text.paragraph[k].list.list_item)
                     {
                         $("#content")
@@ -99,8 +139,7 @@ function createGUI(data){
                         data.lesson_content.content_entry[i].text.paragraph[k].list.list_item[item] + "</li>");
                     }
 
-                    $("#content")
-                        .append("</ul>");
+                    $("#content").append("</ul>");
                 } else { // if no list inside print the text thats inside 
                     $("#content").append
                     ("<p>" + data.lesson_content.content_entry[i].text.paragraph[k] + "</p>");
@@ -110,5 +149,70 @@ function createGUI(data){
             $("#content").append("<p>" + data.lesson_content.content_entry[i].text.paragraph + "</p>");
         }
 
-    };
+    }
 }
+
+
+function show_quizes_available(course){
+ 
+
+            //create a div for each course
+            let div_course_data = document.createElement('div');
+            div_course_data.id = "div_quiz_" + course;
+            $(div_course_data).addClass("course_block_div_home_page");
+            $("#user_quizes").append(div_course_data);
+            //print course name on top of the div
+            div_course_data.innerHTML = ("<h3>" + course + "</h3>");
+
+            //request into course structure database to see what 
+            //components of the course exist and create link buttons to them
+            $.ajax({
+                url : "scripts/get_quiz_internals.php",
+                data: {course_id: course}
+            }).done(function(data) {
+                console.log(data);
+                let quiz_component = JSON.parse(data);
+                console.log(quiz_component);
+
+                let btn_array = [];
+
+                $.each(course_component, function(i,val){
+                    btn_array[i] = document.createElement('input');
+                    btn_array[i].setAttribute('type', 'submit');
+       
+                });
+
+                //for each course lesson display below 
+                $.each(course_component, function(i, val){
+                    btn_array[i].id = "form_btn_" + i;
+                    let form = document.createElement('form');
+             
+                    form.id = "form_course_" + course;
+                    form.action = "scripts/parser.php"
+                    form.method = "GET";
+                    btn_array[i].value = ("Unit: "
+                    + val.unit + " lesson: " + val.lesson);
+
+                    //add information hidden fields to form
+                    let c_id = document.createElement('input');
+                    c_id.value  = course;
+                    c_id.name  = "course_id";
+                    c_id.type = "hidden";
+                    $(form).append(c_id);
+                    let un = document.createElement('input');
+                    un.value = val.unit;
+                    un.name = "unit";
+                    un.type = "hidden";
+                    $(form).append(un);
+                    let les = document.createElement('input');
+                    les.name = "lesson_number";
+                    les.value = val.lesson;
+                    les.type = "hidden";
+                    $(form).append(les);
+
+                    $(form).append(btn_array[i]);
+                    $("#"+div_course_data.id).append(form);
+                    
+                });
+            });
+        }

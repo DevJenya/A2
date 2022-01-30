@@ -1,3 +1,25 @@
+<?php
+include("connection.php");
+session_start();
+
+$course_id = $_GET['course_id'];
+
+
+$query = "select * from quiz_data 
+             where course_id='$course_id'";
+            
+$result = mysqli_query($connection, $query);
+$myArray = array();
+
+while($row = mysqli_fetch_assoc($result)) {
+    $myArray[] = $row;
+}
+
+echo json_encode($myArray);
+die();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +31,6 @@
     <title>Document</title>
 </head>
 <body>
-    
 
     <div id="main">
 
@@ -25,20 +46,6 @@
     
     </div>
 
-    
-
-
-    
-
 <script src="scripts/script_p2.js"></script>
-
-<script>
-
-    window.addEventListener('load',  function(){
-        show_courses_available();
-
-    });
-
-</script>
 </body>
 </html>

@@ -120,6 +120,10 @@ th, td{
 #signout input{
     padding: 15px 20px;
     border: none;
+    background-color: white;
+    font-size: 15px;
+    font-family: sans-serif;
+    border: 1px solid black;
 }
 
 #container{
@@ -184,12 +188,40 @@ a{
     padding: 15px;
     font-size: 1.2em;
     width: 90%;
+
+    margin-top: 150px;
+    border: 2px solid white;
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.397);
 }
 
-button{
-    color: red;
+.course_block_div_home_page{
+    background: lightblue;
+    display: inline-block;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid black;
 }
-#main{
-    position: relative;
-    float: left;
+
+#user_content{
+    display: inline-flex;
+    font-size: 1.2em;
+}
+
+.nav_btn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin:30px;
+    padding: 15px 20px;
+    border: 1px solid black;
+    background-color: white;
+    text-decoration: none;
+    color: black;
+    font-size: 15px;
+    font-family: sans-serif;
+}
+
+.top_btn:hover{
+    box-shadow: 1px 1px 2px 2px rgba(93, 93, 93, 0.534);
 }
