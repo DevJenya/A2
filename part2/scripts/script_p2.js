@@ -176,22 +176,21 @@ function show_quizes_available(course){
 
                 let btn_array = [];
 
-                $.each(course_component, function(i,val){
+                $.each(quiz_component, function(i,val){
                     btn_array[i] = document.createElement('input');
                     btn_array[i].setAttribute('type', 'submit');
        
                 });
 
                 //for each course lesson display below 
-                $.each(course_component, function(i, val){
+                $.each(quiz_component, function(i, val){
                     btn_array[i].id = "form_btn_" + i;
                     let form = document.createElement('form');
              
                     form.id = "form_course_" + course;
-                    form.action = "scripts/parser.php"
+                    form.action = "scripts/parser_quiz.php"
                     form.method = "GET";
-                    btn_array[i].value = ("Unit: "
-                    + val.unit + " lesson: " + val.lesson);
+                    btn_array[i].value = ("Unit: " + val.unit + " quiz");
 
                     //add information hidden fields to form
                     let c_id = document.createElement('input');
@@ -204,11 +203,6 @@ function show_quizes_available(course){
                     un.name = "unit";
                     un.type = "hidden";
                     $(form).append(un);
-                    let les = document.createElement('input');
-                    les.name = "lesson_number";
-                    les.value = val.lesson;
-                    les.type = "hidden";
-                    $(form).append(les);
 
                     $(form).append(btn_array[i]);
                     $("#"+div_course_data.id).append(form);
