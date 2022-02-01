@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["bookmark_update"])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../shared/style.css">
+    <link rel="stylesheet" href="../shared/style1.css">
     <title>Document</title>
 </head>
 <body>
@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["bookmark_update"])){
 <form id="signout" action="logout.php" method="get">
     <input type="submit" value="Signout">
 </form>
-
+<div id="main">
 <div id="container">
     <form method="post" id="form_edit">
     <table id="table_edit">
@@ -67,7 +67,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["bookmark_update"])){
     <form id='btn_edit_cancel' action="home.php" method="get">
         <input  type="submit" value="Cancel">
     </form>
- 
+    </div>
 </div>  
 </body>
 </html>

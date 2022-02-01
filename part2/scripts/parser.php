@@ -47,11 +47,12 @@ if($result && mysqli_num_rows($result)){
             <h3>Course id: <?php echo $course_id ?></h3>
             <h3>Unit: <?php echo $unit ?></h3>
             <h3>Lesson: <?php echo $lesson_materials->lesson_title ?></h3>
+            
 
             <!-- print lesson body -->
             <?php for ($i = 0; $i < sizeof($lesson_materials->lesson_content->content_entry); $i++) {
                     //for each section print section title
-                    echo "<p>".$lesson_materials->lesson_content->content_entry[$i]->section_title."</p>";
+                    echo "<hr> <p>".$lesson_materials->lesson_content->content_entry[$i]->section_title."</p>";
 
                     //check if only paragraph exists and print it
                     if(is_string($lesson_materials->lesson_content->content_entry[$i]->text->paragraph)){

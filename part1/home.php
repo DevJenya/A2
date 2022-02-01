@@ -44,7 +44,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../shared/style.css">
+        <link rel="stylesheet" href="../shared/style1.css">
         <title>Document</title>
     </head>
     <body>
@@ -54,6 +54,7 @@
 <form id="signout" action="logout.php" method="get">
     <input type="submit" value="Signout">
 </form>
+    <div id="main">
     <h2 id="welcome_msg">Welcome, <?php echo $user_data['user_name']?></h2>
     <div id="container">
     <div id='bookmark_add'>
@@ -86,7 +87,7 @@
         ?>
     </table>
     </div>
-
+    </div>
    
 
 

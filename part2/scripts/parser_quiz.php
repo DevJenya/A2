@@ -15,7 +15,6 @@ if($result && mysqli_num_rows($result)){
     $xml=simplexml_load_string($str) or die("Error: Cannot create object");
     $json_str = json_encode($xml);
     $lesson_materials = json_decode($json_str);
-    //echo $lesson_materials;
 }   
 ?>
 
@@ -50,7 +49,7 @@ if($result && mysqli_num_rows($result)){
 
                         echo "<h3>Q".($i+1).".  ".$lesson_materials->lesson_content->content_entry[$i]->question."</h3>";
                                 
-                                    echo "<ul>";
+                                    echo "<ul class='question_list'>";
                                     for ($j = 0; $j < sizeof($lesson_materials->lesson_content->content_entry[$i]->answer)
                                     ; $j++) {
                                         echo "<li>".$lesson_materials->lesson_content->content_entry[$i]->answer[$j]."</li>";
@@ -58,7 +57,7 @@ if($result && mysqli_num_rows($result)){
                                     echo "</ul>";          
                             }
                 ?>
-
+            <button id="quiz_submit">SUBMIT</button>
         </div>
 
 
@@ -71,7 +70,8 @@ if($result && mysqli_num_rows($result)){
 <script>
 
     window.onload = function(){
-        //createGUI(<?php echo $json_str ?>);
+        let json_objsects = (<?php echo $json_str?>);
+        register_answers(json_objsects);
     }
 </script>
 </body>

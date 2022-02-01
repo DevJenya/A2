@@ -1,4 +1,6 @@
 
+var userProvidedAnswers = [];
+
 //onclick handler for clicking login button
 $("#btn_login").click(function(){
     $("#btn_login").hide();
@@ -154,8 +156,6 @@ function createGUI(data){
 
 
 function show_quizes_available(course){
- 
-
             //create a div for each course
             let div_course_data = document.createElement('div');
             div_course_data.id = "div_quiz_" + course;
@@ -210,3 +210,74 @@ function show_quizes_available(course){
                 });
             });
         }
+
+
+function register_answers(json_obj){
+    let emptyAnswerexists = false;
+    console.log(json_obj.lesson_content.content_entry[0].question);
+    console.log(json_obj);
+    $('#content ul').each(function(i)
+    {
+        $("li",this).each(function(k){
+            this.addEventListener("click", e => store_answer(e,i));
+        });
+    });
+
+    $("#quiz_submit").click(function(){
+        console.log(userProvidedAnswers);
+        console.log(userProvidedAnswers.length);
+
+        if(userProvidedAnswers.length < json_obj.lesson_content.content_entry.length){
+            alert("Please, answer all questions");
+            return;
+        }
+
+       for(let pos = 0; pos < userProvidedAnswers.length; pos++){
+            if(userProvidedAnswers[pos] == null){
+                alert("Please, provide answer for question: " + (pos+1));
+                return;
+            }  
+        }
+       
+        $('#content').html(displayResults(json_obj.lesson_content.content_entry.length, json_obj));        
+    });
+}
+
+//funciton checks if the answer the user clicked on is correct
+//it checks the submitted answer against expected correct answer
+function store_answer(event, index)
+{
+	//get user answer and store it in the array
+	userProvidedAnswers[index] = event.target.innerText;
+    $(event.target).siblings().css('background-color', 'white');
+    $(event.target).css('background-color', 'rgb(255, 146, 106)');
+}
+
+// function builds results string and returns it
+function displayResults(questions_length, json_obj){
+	let result_string = "<p>Your score is: " + (score_answers(json_obj)/questions_length*100).toFixed(2) + "%</p>";
+	let q_num;
+
+	for(let i = 0; i < questions_length; i++){
+		q_num = i+1;
+		result_string += "<span class='result_display_block'>";
+		result_string += "<h5>Question: " + q_num + "</h5>";
+		result_string += "<h4>" + json_obj.lesson_content.content_entry[i].question + "</h4>";
+		result_string += "<p>You answered: " + userProvidedAnswers[i] + "</p>";
+		result_string += "<p>Correct answer: " + json_obj.lesson_content.content_entry[i].correctAnswer + "</p>";
+		result_string += "</span>";
+	}
+	return result_string;
+}
+
+function score_answers(json_obj){
+    let score = 0;
+
+    for(let i = 0; i < json_obj.lesson_content.content_entry.length; i++){
+        if(userProvidedAnswers[i] == json_obj.lesson_content.content_entry[i].correctAnswer){
+            score++;
+        }
+    }
+
+    return score;
+}
