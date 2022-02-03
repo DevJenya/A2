@@ -58,12 +58,12 @@
     <h2 id="welcome_msg">Welcome, <?php echo $user_data['user_name']?></h2>
     <div id="container">
     <div id='bookmark_add'>
-        <form method="post">
+        <form method="post" action="addbookmark.php" id="b_add_form">
             <span id="box_label">Create Bookmark</span>
-            <input type="text" name="bookmark_name" placeholder="Bookmark Name">
-            <input type="text" name="bookmark_address" placeholder="Link">
+            <input type="text" name="bookmark_name" placeholder="Bookmark Name" id="user_entered_url_name">
+            <input type="text" name="bookmark_address" placeholder="Link" id="user_entered_url">
 
-            <button type="submit" name="bookmark_add">Add</button>
+            <button type="submit" name="bookmark_add" id="btn_add_bookmark">Add</button>
         </form>
     </div>
 
@@ -90,7 +90,7 @@
     </div>
    
 
-
-    <!-- <script src="../shared/script.js"></script>  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="../shared/script.js"></script>
     </body>
     </html>

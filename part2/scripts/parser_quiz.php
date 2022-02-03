@@ -34,7 +34,7 @@ if($result && mysqli_num_rows($result)){
         <input type="submit" value="Signout" class="top_btn">
     </form>
 
-
+    <h1 id="logo">Best University</h1>
     <a href="../home.html" class="nav_btn top_btn">Main page</a>
 
     <div id="main">

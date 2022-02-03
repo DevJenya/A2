@@ -35,13 +35,56 @@ function deleteRow(id){
    }
         };
     xhttp.send();
-    alert(id);
     document.getElementById("btn_remove_"+id).parentElement.parentElement.remove();
 }
+
+$("#btn_add_bookmark").click(function(e){
+    e.preventDefault();
+
+    if($("#user_entered_url_name").val() == "" || $("#user_entered_url").val() == ""){
+        alert("Enter both name and url data before adding");
+        return;
+    }
+
+    let user_entered_url = $("#user_entered_url").val();
+    console.log(user_entered_url);
+  
+    $.ajax({
+        url:      "../part1/checkurl.php",
+        data: {url: user_entered_url},
+        type:     'POST',
+    }).done(function(data) {
+        console.log(data);
+        
+        if(data == 1){
+            console.log(data);
+                $("#b_add_form").submit()
+        } else {
+            alert("Please, enter correct name and url data before adding");
+        }
+    }); 
+});
 
 function btns_remove_addListeners(){
     for(let i = 0; i < BTNS_REMOVE_LINK.length; i++){
         BTNS_REMOVE_LINK[i].addEventListener('click', deleteRow(BTNS_REMOVE_LINK[i].getAttribute("name")));
     }
+}
+
+// Copied from : https://javascript.tutorialink.com/checking-if-a-url-is-broken-in-javascript/
+// accessed on 2 Feb 2022
+// By Evgeny Zaev
+// author: unknown
+//
+function UrlExists(url, cb){
+    $.ajax({
+        url:      url,
+        dataType: 'text',
+        type:     'POST',
+        complete:  function(xhr){
+            if(typeof cb === 'function')
+               cb.apply(this, [xhr.status]);
+        }
+    });
 }
 

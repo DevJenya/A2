@@ -1,6 +1,13 @@
 
 var userProvidedAnswers = [];
 
+$(document).ready(function(){
+    $("#main_page_slogan").fadeIn(2500).animate({
+        fontSize: "1.5em",
+    }, 1500);;
+});
+
+
 //onclick handler for clicking login button
 $("#btn_login").click(function(){
     $("#btn_login").hide();
@@ -28,8 +35,6 @@ $("#form_login").submit(function(e){
         }   
     });
 });
-
-
 
 
 function show_courses_available(){
@@ -112,47 +117,6 @@ function show_courses_available(){
     });
 }
 
-function createGUI(data){
-
-    $("#content").append("<h3>Course id: " + data.course_id + "</h3>");
-    $("#content").append("<h3>Course id: " + data.unit_number + "</h3>");
-    $("#content").append("<h3>Lesson: " + data.lesson_title + "</h3>");
-
-   for(let i = 0; i < data.lesson_content.content_entry.length; i++){
-        $("#content").append("<p>" + data.lesson_content.content_entry[i].section_title + "</p>");
-
-        console.log(typeof data.lesson_content.content_entry[i].text.paragraph);
-        // for(let j = 0; j < data.lesson_content.content_entry[i].text.length; j++){
-        //     $("#content").append("<p>TEXT: " + data.lesson_content.content_entry[i].text[j] + "</p>");
-        // };
-    
-
-        //check that there are more than one paragraph, itterate through each else print 1 paragraph
-        if(typeof data.lesson_content.content_entry[i].text.paragraph !== 'string'){
-            for(let k = 0; k < data.lesson_content.content_entry[i].text.paragraph.length; k++){
-                
-                //if this paragraph has a list,print the list, else print the para text
-                if(typeof data.lesson_content.content_entry[i].text.paragraph[k].list != 'undefined'){    
-                    $("#content").append("<ul>");
-                    for(let item in data.lesson_content.content_entry[i].text.paragraph[k].list.list_item)
-                    {
-                        $("#content")
-                        .append("<li>" + 
-                        data.lesson_content.content_entry[i].text.paragraph[k].list.list_item[item] + "</li>");
-                    }
-
-                    $("#content").append("</ul>");
-                } else { // if no list inside print the text thats inside 
-                    $("#content").append
-                    ("<p>" + data.lesson_content.content_entry[i].text.paragraph[k] + "</p>");
-                }
-            }
-        } else {
-            $("#content").append("<p>" + data.lesson_content.content_entry[i].text.paragraph + "</p>");
-        }
-
-    }
-}
 
 
 function show_quizes_available(course){

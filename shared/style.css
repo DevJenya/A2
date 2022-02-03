@@ -114,8 +114,8 @@ th, td{
     top: 0;
     right: 0;
     margin:30px;
-    padding: 15px 20px;
-    border: none;
+    padding: 20px 25px;
+    border: 1px solid black;
 }
 
 #signout{
@@ -183,11 +183,13 @@ a{
 
 #logo{
     position: absolute;
-    padding: 15px;
+    top: 0;
+    left: 0;
+    padding: 10px;
     margin: 20px;
     border: 5px solid black;
     display: inline-block;
-    border-radius: 50px;
+    background: white;
 }
 
 .content{
@@ -217,7 +219,7 @@ a{
 .nav_btn{
     position: absolute;
     top: 0;
-    left: 0;
+    right: 150px;
     margin:30px;
     padding: 15px 20px;
     border: 1px solid black;
@@ -236,3 +238,7 @@ a{
     cursor: pointer;
 }
 
+#main_page_slogan{
+    margin: auto;
+    display: none;
+}

@@ -45,12 +45,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../shared/style1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <title>Assignment 2 part 1</title>
 </head>
 <body>
 <h1 id="logo">Bmarker</h1>
     <div id="main">
 
+        <h2>Welcome to BMaker</h2>
     
     <button id="btn_login">Login</button>
     <div id="container"> 
@@ -64,7 +67,7 @@
     <?php 
         while($row = mysqli_fetch_assoc($result)){
             echo "<tr><td>$row[bookmark_name]</td>";
-            echo "<td><a href='http://$row[bookmark_link]\'>
+            echo "<td><a target='_blank' href='http://$row[bookmark_link]\'>
             $row[bookmark_link]</a></td></tr>";
             }
         ?>

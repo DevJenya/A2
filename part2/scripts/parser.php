@@ -33,7 +33,7 @@ if($result && mysqli_num_rows($result)){
     <title>Document</title>
 </head>
 <body>
-
+<h1 id="logo">Best University</h1>
     <form id="signout" action="logout_lesson.php" method="get">
         <input type="submit" value="Signout" class="top_btn">
     </form>
@@ -44,7 +44,7 @@ if($result && mysqli_num_rows($result)){
     <div id="main">
 
         <div class="content" id="content">
-            <h3>Course id: <?php echo $course_id ?></h3>
+            <h4>Course id: <?php echo $course_id ?></h4>
             <h3>Unit: <?php echo $unit ?></h3>
             <h3>Lesson: <?php echo $lesson_materials->lesson_title ?></h3>
             
@@ -52,7 +52,7 @@ if($result && mysqli_num_rows($result)){
             <!-- print lesson body -->
             <?php for ($i = 0; $i < sizeof($lesson_materials->lesson_content->content_entry); $i++) {
                     //for each section print section title
-                    echo "<hr> <p>".$lesson_materials->lesson_content->content_entry[$i]->section_title."</p>";
+                    echo "<hr> <h4>".$lesson_materials->lesson_content->content_entry[$i]->section_title."</h4>";
 
                     //check if only paragraph exists and print it
                     if(is_string($lesson_materials->lesson_content->content_entry[$i]->text->paragraph)){

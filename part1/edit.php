@@ -34,6 +34,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["bookmark_update"])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../shared/style1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>Document</title>
 </head>
 <body>
@@ -43,7 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["bookmark_update"])){
 </form>
 <div id="main">
 <div id="container">
-    <form method="post" id="form_edit">
+    <form method="post" id="form_edit" action="addbookmark.php">
     <table id="table_edit">
         <tr>
             <th></th>
@@ -57,8 +58,8 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["bookmark_update"])){
         </tr>
         <tr>
             <td>Save as</td>
-            <td><input type="text" name="bookmark_name" value="<?php echo $name ?>"></td>
-            <td><input type="text" name="bookmark_address" value="<?php echo $link ?>"></td>
+            <td><input type="text" name="bookmark_name" value="<?php echo $name ?>" id="edit_name"></td>
+            <td><input type="text" name="bookmark_address" value="<?php echo $link ?>" id="edit_url"></td>
         </tr>
     </table>
     <button id='btn_edit_save' type="submit" name="bookmark_update">Save</button>
@@ -69,5 +70,33 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["bookmark_update"])){
     </form>
     </div>
 </div>  
+
+<script>
+$("#btn_edit_save").click(function(e){
+    e.preventDefault();
+
+    if($("#edit_name").val() == "" || $("#edit_url").val() == ""){
+        alert("Enter both name and url data before saving");
+        return;
+    }
+
+    let user_entered_url = $("#edit_url").val();
+    console.log(user_entered_url);
+  
+    $.ajax({
+        url:      "checkurl.php",
+        data: {url: user_entered_url},
+        type:     'POST',
+    }).done(function(data) {
+        //1 - url active, 0 - not active
+        if(data == 1){
+               $("#form_edit").unbind('submit').submit()
+        } else {
+            alert("URL entered is not active");
+        }
+    }); 
+});
+    
+</script>
 </body>
 </html>
